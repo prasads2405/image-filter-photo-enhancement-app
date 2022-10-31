@@ -1,0 +1,26 @@
+pipeline {
+  agent { 
+    label 'Agent-1 || Agent-2'
+  }
+  tools { 
+    maven 'Apache Maven 3.6.3'
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh '''
+          cd image-enhancement-app
+          mvn compile
+        '''
+      }
+    }
+    stage('Unit Test') {
+      steps {
+        sh '''
+          cd image-enhancement-app
+          mvn test
+        '''
+      }
+    }
+  }
+}
